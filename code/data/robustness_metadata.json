@@ -1,0 +1,11 @@
+{
+  "trials": 20,
+  "strategies": [
+    "random",
+    "degree",
+    "betweenness",
+    "kcore",
+    "collective_influence",
+    "community_bridge"
+  ]
+}

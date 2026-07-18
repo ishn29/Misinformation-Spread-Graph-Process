@@ -1,0 +1,36 @@
+{
+  "trials": 100,
+  "topologies": [
+    "ER",
+    "WS",
+    "BA"
+  ],
+  "strategies": [
+    "random",
+    "degree",
+    "betweenness",
+    "pagerank",
+    "eigenvector",
+    "kcore",
+    "collective_influence",
+    "community_bridge"
+  ],
+  "coverages": [
+    0.01,
+    0.05,
+    0.1
+  ],
+  "config": {
+    "n": 1000,
+    "mean_degree": 6,
+    "beta": 0.15,
+    "gamma": 0.05,
+    "initial_spreaders": 5,
+    "max_steps": 500,
+    "ws_rewire": 0.1,
+    "ba_m": 3,
+    "sbm_communities": 4,
+    "sbm_mixing": 0.1
+  },
+  "workers": 8
+}
