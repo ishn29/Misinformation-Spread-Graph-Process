@@ -1,6 +1,6 @@
-# Complete revision package
+# Misinformation Spread as a Graph Process: Network Topology, Structural Immunization, and Regime Dependence
 
-This package contains the revised manuscript, Supporting Online Material, executed notebooks, source code, analysis data, statistical outputs, and figures for **Misinformation Spread as a Graph Process: Network Topology, Structural Immunization, and Regime Dependence**.
+This package contains the manuscript, Supporting Online Material, executed notebooks, source code, analysis data, statistical outputs, and figures for **Misinformation Spread as a Graph Process: Network Topology, Structural Immunization, and Regime Dependence**.
 
 ## Main deliverables
 
