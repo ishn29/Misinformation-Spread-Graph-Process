@@ -4,9 +4,9 @@ This package contains the manuscript, Supporting Online Material, executed noteb
 
 ## Main deliverables
 
-- `documents/MisinformationOnlineCitation.docx`
-- `documents/MisinformationStandardCitation.docx`
-- `documents/MisinformationSOM.docx`
+- `final_documents/MisinformationOnlineCitation.docx`
+- `final_documents/MisinformationStandardCitation.docx`
+- `final_documents/MisinformationSOM.docx`
 
 ## Executed notebooks
 

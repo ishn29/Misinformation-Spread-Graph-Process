@@ -70,8 +70,8 @@ for col,t in enumerate(order):
         g=bg[(bg.topology==t)&(bg.gamma==gam)]; ax.plot(g.beta,g.final_size,marker='o',label=f'gamma={gam}')
     ax.set_xscale('log'); ax.set_ylim(0,1.03); ax.set_title(f'{t}: baseline final size'); ax.set_xlabel('Transmission probability beta'); ax.set_ylabel('Final size'); ax.legend(fontsize=7)
     ax=axes[1,col]
-    g=ri[(ri.topology==t)&np.isclose(ri.beta,.02)].groupby('strategy')['final_size'].mean().reindex(['random','degree','betweenness','kcore','collective_influence','community_bridge'])
-    ax.bar(range(len(g)),g.values); ax.set_xticks(range(len(g)),['Random','Degree','Between.','k-core','CI','Bridge'],rotation=45,ha='right'); ax.set_title(f'{t}: 5% protection at beta=0.02'); ax.set_ylabel('Final size')
+    g=ri[(ri.topology==t)&np.isclose(ri.beta,.02)].groupby('strategy')['final_size'].mean().reindex(['random','degree','betweenness','kcore','collective_influence','community_bridge','pagerank','eigenvector'])
+    ax.bar(range(len(g)),g.values); ax.set_xticks(range(len(g)),['Random','Degree','Between.','k-core','CI','Bridge','PageRank','Eigen.'],rotation=45,ha='right'); ax.set_title(f'{t}: 5% protection at beta=0.02'); ax.set_ylabel('Final size')
 fig.suptitle('Near-threshold regimes reveal conditional topology and intervention effects',y=1.01,fontweight='bold'); fig.tight_layout(); fig.savefig(FIG/'figure_near_threshold.png',dpi=300,bbox_inches='tight'); plt.close(fig)
 
 # Mechanism analysis
@@ -89,8 +89,8 @@ fig.tight_layout(); fig.savefig(FIG/'figure_mechanisms.png',dpi=300,bbox_inches=
 # Heterogeneity
 fig,axes=plt.subplots(1,3,figsize=(11,4),sharey=True)
 for ax,t in zip(axes,order):
-    mat=he[he.topology==t].groupby(['behavior','strategy'])['final_size'].mean().unstack().reindex(index=['homogeneous','moderate','strong','degree_correlated'],columns=['random','degree','betweenness','kcore','collective_influence','community_bridge'])
-    im=ax.imshow(mat.values,aspect='auto',vmin=0.75,vmax=1.0); ax.set_title(t); ax.set_xticks(range(mat.shape[1]),['Random','Degree','Between.','k-core','CI','Bridge'],rotation=50,ha='right'); ax.set_yticks(range(mat.shape[0]),['Homogeneous','Moderate','Strong','Degree-correlated'])
+    mat=he[he.topology==t].groupby(['behavior','strategy'])['final_size'].mean().unstack().reindex(index=['homogeneous','moderate','strong','degree_correlated'],columns=['random','degree','betweenness','kcore','collective_influence','community_bridge','pagerank','eigenvector'])
+    im=ax.imshow(mat.values,aspect='auto',vmin=0.75,vmax=1.0); ax.set_title(t); ax.set_xticks(range(mat.shape[1]),['Random','Degree','Between.','k-core','CI','Bridge','PageRank','Eigen.'],rotation=50,ha='right'); ax.set_yticks(range(mat.shape[0]),['Homogeneous','Moderate','Strong','Degree-correlated'])
 fig.colorbar(im,ax=axes.ravel().tolist(),fraction=.02,pad=.02,label='Final outbreak size'); fig.suptitle('Strategy performance under heterogeneous sharing behavior',fontweight='bold'); fig.subplots_adjust(left=.12,right=.92,bottom=.25,top=.82,wspace=.18); fig.savefig(FIG/'figure_heterogeneity.png',dpi=300,bbox_inches='tight'); plt.close(fig)
 
 # Seed placement
