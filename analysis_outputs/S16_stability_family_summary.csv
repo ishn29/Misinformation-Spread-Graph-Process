@@ -1,0 +1,14 @@
+family,topology,beta,values_tested,top2_identical_across_values,stable_winner_strategies,stable
+ws_rewire,WS,0.02,"[np.float64(0.01), np.float64(0.1), np.float64(0.5)]",False,[],False
+ws_rewire,WS,0.15,"[np.float64(0.01), np.float64(0.1), np.float64(0.5)]",False,[],False
+sbm_mixing,SBM,0.02,"[np.float64(0.02), np.float64(0.05), np.float64(0.15), np.float64(0.3)]",False,[],False
+sbm_mixing,SBM,0.15,"[np.float64(0.02), np.float64(0.05), np.float64(0.15), np.float64(0.3)]",False,['pagerank'],True
+seed_count,BA,0.02,"[np.int64(1), np.int64(5), np.int64(10)]",False,['degree'],True
+seed_count,BA,0.15,"[np.int64(1), np.int64(5), np.int64(10)]",False,[],False
+seed_count,ER,0.02,"[np.int64(1), np.int64(5), np.int64(10)]",False,[],False
+seed_count,ER,0.15,"[np.int64(1), np.int64(5), np.int64(10)]",False,[],False
+seed_count,WS,0.02,"[np.int64(1), np.int64(5), np.int64(10)]",False,[],False
+seed_count,WS,0.15,"[np.int64(1), np.int64(5), np.int64(10)]",False,[],False
+n,BA,0.02,"[np.int64(500), np.int64(2000)]",False,[],False
+n,ER,0.02,"[np.int64(500), np.int64(2000)]",False,[],False
+n,WS,0.02,"[np.int64(500), np.int64(2000)]",False,[],False

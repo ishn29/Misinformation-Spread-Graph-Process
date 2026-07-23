@@ -1,0 +1,18 @@
+{
+  "trials": 20,
+  "strategies": [
+    "random",
+    "degree",
+    "betweenness",
+    "pagerank",
+    "eigenvector",
+    "kcore",
+    "collective_influence",
+    "community_bridge"
+  ],
+  "betas": [
+    0.15,
+    0.02
+  ],
+  "coverage": 0.05
+}

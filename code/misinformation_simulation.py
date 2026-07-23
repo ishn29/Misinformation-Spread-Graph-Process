@@ -124,6 +124,31 @@ def community_bridge_scores(g: nx.Graph) -> Tuple[Dict[int, float], Dict[int, in
     return scores, membership
 
 
+def _eigenvector_scores(g: nx.Graph) -> Dict[int, float]:
+    """Eigenvector centrality that tolerates disconnected graphs.
+
+    Power iteration is tried on the full graph first (matches the connected
+    case exactly). If it fails to converge, the dense eigenvector solver is
+    applied per connected component instead of the whole graph, since
+    ``eigenvector_centrality_numpy`` refuses disconnected input entirely.
+    Nodes in singleton components score zero.
+    """
+    try:
+        return nx.eigenvector_centrality(g, max_iter=500, tol=1e-7)
+    except nx.PowerIterationFailedConvergence:
+        pass
+    scores: Dict[int, float] = {n: 0.0 for n in g}
+    for component in nx.connected_components(g):
+        if len(component) < 2:
+            continue
+        sub = g.subgraph(component)
+        try:
+            scores.update(nx.eigenvector_centrality_numpy(sub))
+        except Exception:
+            pass
+    return scores
+
+
 def compute_rankings(
     g: nx.Graph,
     seed: int,
@@ -154,10 +179,7 @@ def compute_rankings(
         elif method == "pagerank":
             score = nx.pagerank(g, alpha=0.85, max_iter=200, tol=1e-8)
         elif method == "eigenvector":
-            try:
-                score = nx.eigenvector_centrality(g, max_iter=500, tol=1e-7)
-            except nx.PowerIterationFailedConvergence:
-                score = nx.eigenvector_centrality_numpy(g)
+            score = _eigenvector_scores(g)
         elif method == "kcore":
             score = nx.core_number(g) if g.number_of_edges() else {n: 0 for n in g}
         elif method == "collective_influence":
